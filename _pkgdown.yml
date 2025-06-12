@@ -1,0 +1,6 @@
+template:
+  bootstrap: 5
+  light-switch: true
+  bslib:
+    base_font: {google: "Roboto"}
+url: https://Sladderdask.github.io/SladderCode/
