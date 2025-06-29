@@ -16,20 +16,17 @@ car_countries <- c("Japan", "Japan", "Japan", "USA", "USA",
                    "USA", "Italy", "Italy", "Sweden")
 
 mtcars$car_countries <- car_countries
+head(mtcars)
+help(data(mtcars))
 
 avgeff <- mean(mtcars$mpg)
 
-below_average = c()
-above_average = c()
+above_average <- rownames(mtcars[mtcars$mpg > mean(mtcars$mpg),])
 
-for(index in 1:nrow(mtcars)){
-  if(mtcars$mpg[index] < avgeff){
-    below_average <- c(below_average, mtcars$mpg[index])
-  }else{
-    above_average <- c(above_average, mtcars$mpg[index])
-  }
-}
+below_average <- rownames(mtcars[mtcars$mpg < mean(mtcars$mpg),])
 
+print(above_average)
+print(below_average)
 #####-----Q2------####
 
 USA_cars <- mtcars[mtcars$car_countries == "USA",]
@@ -68,7 +65,7 @@ print(head(spotify_track_data))
 dim(spotify_track_data)
 help(data("spotify_track_data"))
 
-artists <- c("Rihanna", "Michael Jacksson", "Elvis Presley", "Eminem")
+artists <- c("Rihanna", "Michael Jackson", "Elvis Presley", "Eminem")
 
 my_playlist <- spotify_track_data[spotify_track_data$artist_name %in% artists,]
 
@@ -80,7 +77,7 @@ dance_tracks <-my_playlist[my_playlist$danceability > median(my_playlist$danceab
 
 
 Rihanna_dance_tracks <- nrow(dance_tracks[dance_tracks$artist_name == "Rihanna",]) / nrow(my_playlist)
-Rihanna_dance_tracks
+
 
 #####-----Q7------####
 
@@ -88,4 +85,5 @@ Rihanna_dance_tracks
 # You should alter only the corrected_playlist dataset.
 
 corrected_playlist <- spotify_track_data
-corrected_playlist[corrected_playlist$artist_name == "Michael Jacksson", "danceability"] <- corrected_playlist[corrected_playlist$artist_name == "Michael Jacksson", "danceability"] - 0.05
+corrected_playlist[corrected_playlist$artist_name == "Michael Jackson", "danceability"] <- corrected_playlist[corrected_playlist$artist_name == "Michael Jackson", "danceability"] - 0.05
+
