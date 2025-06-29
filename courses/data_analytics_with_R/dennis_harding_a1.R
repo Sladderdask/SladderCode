@@ -46,16 +46,36 @@ print(sleep_histogram)
 
 
 # 7. Bar chart for food categories
-food_barchart <- ...
+food_barchart <- ggplot(data = msleep, aes(x = vore)) +
+  geom_bar(stat = "count") +
+  labs(title = "Frequency of Vore Type",
+       x = "vore",
+       y = "count")
+food_barchart
 
 # 8. Grouped box plot for sleep time
-sleep_boxplot <- ...
+sleep_boxplot <-  ggplot(data = msleep, aes(x = vore, y = sleep_total)) +
+  geom_boxplot(stat = "boxplot") +
+  labs(title = "Vore total sleep boxplot")
+sleep_boxplot
 
 # 9. Longest average sleep time
-highest_average <- ...
+avgsleep_vore <- msleep %>% group_by(vore) %>% summarize(avg_sleep = mean(sleep_total))
+highest_average <- max(avgsleep_vore$avg_sleep)
 
 # 10. REM sleep vs. total sleep, colored by order
-sleep_scatterplot <- ...
+sleep_scatterplot <- ggplot(data = msleep, aes(x = sleep_total, y = sleep_rem, color = order)) +
+  geom_point() +
+  labs(title = "Rem vs Total Sleep Scatterplot")
+sleep_scatterplot
 
 # 11. REM sleep vs. total sleep for the order most common in the data
-sleep_scatterplot2 <- ...
+common_order <- msleep %>% group_by(order) %>% summarize(count = n())
+common_order
+common_order_df <- msleep %>% filter(order == "Rodentia")
+common_order_df
+
+sleep_scatterplot2 <- sleep_scatterplot <- ggplot(data = common_order_df, aes(x = sleep_total, y = sleep_rem)) +
+  geom_point() +
+  labs(title = "Rem vs Total Sleep Scatterplot, Rodentia")
+sleep_scatterplot
