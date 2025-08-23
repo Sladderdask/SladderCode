@@ -28,7 +28,6 @@ correlations <- cor(numeric, use = "pairwise.complete.obs", method = "pearson")
 correlations
 
 # 5. Highest correlation
-
 correlations_copy <- correlations
 correlations_copy[correlations_copy == 1] <- 0
 correlations_copy[correlations_copy == min(correlations_copy)] <- 0
