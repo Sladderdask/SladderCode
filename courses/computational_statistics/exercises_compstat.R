@@ -37,6 +37,7 @@ gt_h4 <- function(x,h) (x <- x[!(is.na(x)|is.nan(x))])[h < x]
 
 gt_h4(x,h)
 
+library(ggplot2)
 #A4
 infrared <- read.table("https://math-ku.github.io/compstat/data/infrared.txt", header = TRUE)
 F12 <- infrared$F12
@@ -48,7 +49,67 @@ df <- data.frame(x = log(F12))
 df
 
 ggplot(df, aes(x = x, fill = "grey")) +
-  geom_histogram(aes(x = x), binwidth = 0.2, col = "black")
+  geom_histogram(aes(x = x), binwidth = 1, col = "black")
+
+
+#A5
+my_breaks <- function(x, h = 5){
+  x <- sort(x)
+  ux <- unique(x)
+  i <- seq(1, length(ux), h)
+
+  if (i[length(i)] < length(ux)) {
+    i[length(i) + 1] <- length(ux)
+  }
+  ux[i]
+
+}
+
+x <- c(1,2,3,4,5,6,7)
+h <- 2
+
+print(my_breaks(x,h))
+
+my_breaks <- function(x, h = 5) (us <- unique(sort(x)))[c(seq(1, length(us), h), length(us)[!!(length(us) - 1) %% h])]
+
+#6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

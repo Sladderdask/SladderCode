@@ -20,16 +20,14 @@ def ct(s: str):
     return cdic
 
 def occ(s: str, bwt: str):
-    # occurrence table: prefix counts of each char in BWT
+    # build empty occ tavble (dic) and and fill with values 
     ls = len(s) + 1
-    occ = {}
-    for i in set(s):
-        occ[i] = [[0] for i in range(ls)]
-    j = 1
-    for i in bwt:
-        occ[i][j:] = [[x[0] + 1] for x in occ[i][j:]]
-        j += 1
+    occ = {c: [0] * ls for c in set(s)}
+    for j, char in enumerate(bwt, start=1):
+        for c in occ:
+            occ[c][j] = occ[c][j-1] + (1 if c == char else 0)
     return occ
+
 
 def qfinder(s: str, q: str):
     # backward search for query q in string s
@@ -39,21 +37,28 @@ def qfinder(s: str, q: str):
     OCC = occ(s, BWT)
     SA = sa(s)
 
-    top = 1
-    bot = len(s)
+    top, bot = 0, len(s)
     for c in q[::-1]:
-        top = CT[c] + OCC[c][top][0]
-        bot = CT[c] + OCC[c][bot][0]
-        print("bot", bot, "top", top, "char", c)
+        top = CT[c] + OCC[c][top]
+        bot = CT[c] + OCC[c][bot]
 
-    return sorted(SA[top-1:bot])
+    if top > bot:
+        return "substring does not exist"
+
+    return "\n".join(map(str, sorted(SA[top:bot])))
 
 if __name__ == "__main__":
+    try:
+        string = sys.argv[1]
+        query = sys.argv[2]
+    except IndexError:
+        print("use format: python <dennis_harding_fmi.py <string> <query>")
+    except NameError:
+        print("use format: python <dennis_harding_fmi.py <string> <query>")
 
-    string = sys.argv[1]
-    query = sys.argv[2]
-
-    qfinder(string, query) 
-
-    for i in
-    
+    if type(string) == str and type(query) == str and len(string) > len(query):
+        print(qfinder(string, query))
+    elif len(string) < len(query):
+        print("query needs to be shorter than string")
+    else:
+        print("use format: python <dennis_harding_fmi.py <string> <query>")

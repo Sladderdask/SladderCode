@@ -285,21 +285,26 @@ profvis(gauss_opt(x))
 # Benchmark your implementation against the original gauss() function.
 
 
+#E1
+library(foreach)
+library(doParallel)
+cl <- makeCluster(2)
+registerDoParallel(cl)
+
+foreach(i=seq_len(3)) %dopar%
+  {
+    paste(
+      sqrt(i),
+      Sys.getpid()
+    )
+  }
 
 
 
 
+v <- c(1,2,3,4,5,6)
 
-
-
-
-
-
-
-
-
-
-
+sqrt(v)
 
 
 
