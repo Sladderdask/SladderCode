@@ -304,7 +304,6 @@ foreach(i=seq_len(3)) %dopar%
 
 v <- c(1,2,3,4,5,6)
 
-sqrt(v)
 
 
 
