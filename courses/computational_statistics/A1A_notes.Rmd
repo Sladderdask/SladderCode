@@ -3,3 +3,59 @@ title: "A1A_notes"
 output: html_document
 ---
 
+take basic implementation code form lecture
+correctness test
+see if the funcitno performs similiarily to the density() function
+
+plot the difference test, homemade - density over x
+
+different because density does some approximations other than rounding errors
+
+profiling and optimizing the homemade
+
+looks like loops are problems
+
+try to not do nested loops -> vectorize instead.
+
+use apply motivate choise of apply funciton.
+
+funciton or binning for faster implementation
+
+do additional correctness
+
+benchmark to compare performance.
+
+create -> correctness -> benchmark -> create -> correctness -> benchmark
+
+
+find optimal bandwidth for estimation fuctions
+
+AMISE plug in method
+Chapter 2 in the book
+
+better bandwidth will give stronger fit
+
+gaussian kernel or pilot kernel
+
+
+etimate pilot bandwith using silvermans rule of thumb
+
+stimate lnorm
+
+of f'' using numerical integration
+ 
+plug in to epanechnikov oracle bandwith formula 2.4
+ 
+ 
+h = 0.4149 ?
+ 
+optimize and profile the AMISE functions
+ 
+use convolution to estimate f''
+ 
+ 
+visualize AMISE bandwith optimizer.
+ 
+density vs log(F12) 
+ 
+dependency injection use it to inject the kernel into the funciton.  
