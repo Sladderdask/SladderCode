@@ -1,0 +1,7 @@
+2025-09-21 11:48:15,213	INFO	main: Started with the command: /usr/bin/mapDamage -i d3.longreads.sorted.bam -r chr22.fa.gz -d mapDamage_longreads
+2025-09-21 11:48:23,363	DEBUG	main: BAM read in 10.380134 seconds
+2025-09-21 11:48:24,829	INFO	mapdamage.rscript: Performing Bayesian estimates
+2025-09-21 11:48:24,829	DEBUG	mapdamage.rscript: Call: Rscript /usr/lib/python3/dist-packages/mapdamage/Rscripts/stats/runGeneral.R --args 30 10000 10 50000 0 0 1 1 0 0 1 12 mapDamage_longreads/ /usr/lib/python3/dist-packages/mapdamage/Rscripts/stats/ mapDamage_longreads/Stats_out 0 0 0 mapDamage_longreads/acgt_ratio.csv 0 0
+2025-09-21 11:54:11,667	DEBUG	mapdamage.rscript: Bayesian estimates completed in 346.837603 seconds
+2025-09-21 11:54:11,667	INFO	main: Successful run
+2025-09-21 11:54:11,667	DEBUG	main: Run completed in 358.684042 seconds
