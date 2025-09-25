@@ -14,6 +14,10 @@
 
 
 library(ggplot2)
+library(bench)
+library(dplyr)
+library(tidyr)
+library(ggbeeswarm)
 
 estimate_R_f2 <- function(x, f_vals) {
   dx <- diff(x)[1]
@@ -85,21 +89,23 @@ compare_densities <- function(grid, f1, f2,
 
   # first plot: both densities
   p1 <- ggplot(df, aes(x = x, y = density, color = estimator)) +
-    geom_line(linewidth = 0.2) +
+    geom_line(linewidth = 0.1, alpha = 0.5) +
     labs(title = "Comparison of Density Estimates",
          x = "x", y = "Density") +
-    theme_light()
+    theme_gray()
 
   # second plot: difference
   p2 <- ggplot(df_diff, aes(x = x, y = diff)) +
-    geom_line(color = "black", linewidth = 0.2) +
+    geom_line(color = "black", linewidth = 0.1, alpha = 0.5) +
     geom_hline(yintercept = 0, linetype = "dashed") +
     labs(title = paste(label1, "-", label2),
          x = "x", y = "Difference") +
-    theme_light()
+    theme_gray()
 
   list(densities = p1, difference = p2)
 }
+
+
 
 
 
@@ -119,10 +125,34 @@ f2 <- r_dens(x, grid, h)
 compare_densities(grid, f1, f2)
 
 
+# BENCHMARKING
 
+smooth_bench <- bench::press(
+  n = 2^(6:9),
+  {
+    x <- rnorm(n)
+    bench::mark(
+      my_kde = my_dens(x, grid, h),
+      r_kde = r_dens(x, grid, h),
+      check = FALSE
+    )
+  }
+)
 
+# Beeswarm plot
 
+plot(smooth_bench)
 
+# Line plot
+
+mutate(smooth_bench, method = as.character(expression)) |>
+  ggplot(aes(n, median, color = method)) +
+  geom_point() +
+  geom_line() +
+  scale_y_continuous(labels = function(x) paste0(x, " s")) +
+  labs(y = "time (s)")
+
+# PROFILING
 
 
 
