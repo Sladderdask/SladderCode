@@ -1,7 +1,0 @@
-2025-09-21 10:40:32,434	INFO	main: Started with the command: /usr/bin/mapDamage -i d3.sorted.bam -r chr22.fa.gz -d mapDamage_out
-2025-09-21 10:41:18,265	DEBUG	main: BAM read in 48.070077 seconds
-2025-09-21 10:41:19,732	INFO	mapdamage.rscript: Performing Bayesian estimates
-2025-09-21 10:41:19,732	DEBUG	mapdamage.rscript: Call: Rscript /usr/lib/python3/dist-packages/mapdamage/Rscripts/stats/runGeneral.R --args 30 10000 10 50000 0 0 1 1 0 0 1 12 mapDamage_out/ /usr/lib/python3/dist-packages/mapdamage/Rscripts/stats/ mapDamage_out/Stats_out 0 0 0 mapDamage_out/acgt_ratio.csv 0 0
-2025-09-21 10:46:59,252	DEBUG	mapdamage.rscript: Bayesian estimates completed in 339.520477 seconds
-2025-09-21 10:46:59,253	INFO	main: Successful run
-2025-09-21 10:46:59,253	DEBUG	main: Run completed in 389.057739 seconds
